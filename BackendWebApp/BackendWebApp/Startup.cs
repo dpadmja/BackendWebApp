@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Products.Repository;
+using Products.Services;
 
 namespace BackendWebApp
 {
@@ -30,6 +31,8 @@ namespace BackendWebApp
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<ProductsDbContext>(opt =>
                 opt.UseMySQL(Configuration.GetConnectionString("ProductsDb")));
+            services.AddTransient<IProductsRepository, ProductsRepository>();
+            services.AddTransient<IProductsService, ProductsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

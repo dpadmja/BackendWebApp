@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Products.Repository;
 using Products.Repository.RepoModels;
+using Products.Services;
+using Products.Services.ServiceModels.ResponseModels;
 
 namespace BackendWebApp.Controllers
 {
@@ -14,18 +16,27 @@ namespace BackendWebApp.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
+        private readonly IProductsService _productsService;
+
+        //public ProductsController(IProductsService productsService)
+        //{
+        //    _productsService = productsService;
+        //}
+
         private readonly ProductsDbContext _context;
 
-        public ProductsController(ProductsDbContext context)
+        public ProductsController(ProductsDbContext context, IProductsService productsService)
         {
             _context = context;
+            _productsService = productsService;
         }
 
         // GET: api/Products
         [HttpGet]
-        public IEnumerable<Product> GetProduct()
+        public IEnumerable<ProductResponse> GetProducts()
         {
-            return _context.Product;
+            return _productsService.GetAllProducts();
+            //return _context.Product;
         }
 
         // GET: api/Products/5
