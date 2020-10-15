@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Products.Repository;
@@ -11,6 +12,7 @@ using Products.Services.ServiceModels.ResponseModels;
 
 namespace BackendWebApp.Controllers
 {
+    // [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CompanyProductsController : ControllerBase
@@ -18,7 +20,7 @@ namespace BackendWebApp.Controllers
         private readonly ProductsDbContext _context;
         private readonly IProductsService _productsService;
 
-        public CompanyProductsController(ProductsDbContext context,IProductsService productsService)
+        public CompanyProductsController(ProductsDbContext context, IProductsService productsService)
         {
             _context = context;
             _productsService = productsService;
@@ -30,6 +32,9 @@ namespace BackendWebApp.Controllers
         //    return _context.Product;
         //}
         // GET: api/Products
+
+        // [AllowAnonymous]
+
         [HttpGet]
         public IEnumerable<ProductResponse> GetProducts()
         {
