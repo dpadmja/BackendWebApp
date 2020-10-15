@@ -33,18 +33,18 @@ namespace BackendWebApp
                 opt.UseMySQL(Configuration.GetConnectionString("ProductsDb")));
             services.AddTransient<IProductsRepository, ProductsRepository>();
             services.AddTransient<IProductsService, ProductsService>();
-            //services.AddSwaggerGen();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            //app.UseSwagger();
-            //app.UseSwaggerUI(c =>
-            //{
-            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Products APIs");
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Products APIs");
 
-            //});
+            });
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
