@@ -15,8 +15,8 @@ namespace Products.UnitTests
         {
             Mock<IProductsService> productService = new Mock<IProductsService>();
             Mock<ProductsDbContext> productRepo = new Mock<ProductsDbContext>();
-            ProductsController productsController = new ProductsController(productRepo.Object, productService.Object);
-            var actualProducts =  productsController.GetProducts();
+            CompanyProductsController productsController = new CompanyProductsController(productRepo.Object, productService.Object);
+            var actualProducts = productsController.GetProducts();
             Assert.AreEqual(0, actualProducts.Count());
 
         }

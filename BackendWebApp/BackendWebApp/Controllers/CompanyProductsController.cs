@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Products.Repository;
@@ -14,31 +13,28 @@ namespace BackendWebApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class CompanyProductsController : ControllerBase
     {
+        private readonly ProductsDbContext _context;
         private readonly IProductsService _productsService;
 
-        //public ProductsController(IProductsService productsService)
-        //{
-        //    _productsService = productsService;
-        //}
-
-        private readonly ProductsDbContext _context;
-
-        public ProductsController(ProductsDbContext context, IProductsService productsService)
+        public CompanyProductsController(ProductsDbContext context,IProductsService productsService)
         {
             _context = context;
             _productsService = productsService;
         }
-
+        //// GET: api/Products
+        //[HttpGet]
+        //public IEnumerable<Product> GetProducts()
+        //{
+        //    return _context.Product;
+        //}
         // GET: api/Products
         [HttpGet]
         public IEnumerable<ProductResponse> GetProducts()
         {
             return _productsService.GetAllProducts();
-            //return _context.Product;
         }
-
         // GET: api/Products/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProduct([FromRoute] int id)
