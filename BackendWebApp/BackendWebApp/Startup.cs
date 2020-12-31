@@ -37,9 +37,10 @@ namespace BackendWebApp
             services.AddTransient<IProductsService, ProductsService>();
             services.AddSwaggerGen();
 
-            //services.AddAuthentication("BasicAuthentication")
-            //    .AddScheme<AuthenticationSchemeOptions, BasicAutheticationHandler>("BasicAuthentication", null);
-            //services.AddScoped<IProductAuthenticationService, IProductAuthenticationService>();
+            //services.AddAuthentication("Basic")
+            //    .AddScheme<AuthenticationSchemeOptions, BasicAutheticationHandler>("Basic", null);
+            //services.AddScoped<IProductAuthenticationService, ProductAuthenticateService>();
+            //services.AddAuthorization();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,7 +63,8 @@ namespace BackendWebApp
 
             app.UseHttpsRedirection();
             app.UseMvc();
-            // app.UseAuthentication();
+            //app.UseAuthentication();
+           // app.UseAuthorization();
         }
     }
 }

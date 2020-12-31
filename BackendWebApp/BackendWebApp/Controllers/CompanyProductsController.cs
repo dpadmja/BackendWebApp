@@ -12,7 +12,7 @@ using Products.Services.ServiceModels.ResponseModels;
 
 namespace BackendWebApp.Controllers
 {
-    // [Authorize]
+     //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CompanyProductsController : ControllerBase
@@ -33,7 +33,7 @@ namespace BackendWebApp.Controllers
         //}
         // GET: api/Products
 
-        // [AllowAnonymous]
+        //[AllowAnonymous]
 
         [HttpGet]
         public IEnumerable<ProductResponse> GetProducts()
